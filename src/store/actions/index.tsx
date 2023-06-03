@@ -1,11 +1,5 @@
-import session from './session'
-import customer from './customer'
-import template from './template'
-import campain from './campain'
+import auth from './auth'
 
 export default {
-    session,
-    customer,
-    template,
-    campain,
+    auth,
 }

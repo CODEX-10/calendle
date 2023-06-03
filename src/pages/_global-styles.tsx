@@ -51,18 +51,6 @@ const GlobalStyle = createGlobalStyle`
       border-radius: 1rem;
     }
   }
-
-  .main-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-
-    .main-content {
-      width: 100%;
-      overflow-x: hidden;
-      overflow-y: overlay;
-    }
-  }
 `;
 
 export default GlobalStyle

@@ -46,8 +46,8 @@ export const Container: any = styled.div`
             padding: 0;
 
             .nav-item {
-                margin-right: 2rem;
-                padding: .5rem 1rem .5rem 2.5rem;
+                margin: .5rem 1.5rem;
+                padding: .3rem .8rem;
                 color: var(--label);
                 font-size: .9rem;
                 font-weight: 500;
@@ -55,18 +55,19 @@ export const Container: any = styled.div`
                 display: flex;
                 align-items: center;
                 transition: ease .3s;
-                border-radius: 0 2rem 2rem 0;
+                border-radius: 3px;
+                border-left: 5px solid transparent;
 
                 &.target {
-                    background: var(--tertiary);
                     color: var(--secondary);
+                    border-left: 5px solid var(--secondary);
                 }
 
                 &:hover {
                     color: var(--label-hover);
 
                     &.target {
-                        background: var(--tertiary);
+                        border-left: 5px solid var(--secondary);
                         color: var(--secondary);
                     }
                 }
@@ -75,8 +76,15 @@ export const Container: any = styled.div`
                     flex: .15;
                 }
 
-                div:last-child {
-                    flex: .85;
+                div:nth-child(2) {
+                    flex: .70;
+                }
+
+                div:nth-child(3) {
+                    flex: .15;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
                 }
             }
         }

@@ -19,7 +19,7 @@ export function Menu(props: any) {
         <Container>
             <div>
                 <header>
-                    <Logo size="1.3rem" />
+                    <Logo size="2rem" />
                 </header>
                 <nav>
                     <ul>
@@ -33,6 +33,10 @@ export function Menu(props: any) {
                                         <div>
                                             {data.label}
                                         </div>
+                                        {_.includes(route, data.route) &&
+                                            <div>
+                                                <i className="fa-solid fa-angle-right" />
+                                            </div>}
                                     </div>
                                 </Link>
                             </li>

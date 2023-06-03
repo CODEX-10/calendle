@@ -1,11 +1,10 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100vw;
     height: 100vh;
+    display: grid;
+    place-items: center;
 
     .content {
         border: 1px solid var(--transparent);
@@ -17,11 +16,12 @@ export const Container = styled.div`
         justify-content: center;
         width: 25rem;
         box-shadow: 0 0 20px -10px rgb(0, 0, 0, 0.3);
+        margin-top: 2rem;
 
         .content-title {
             font-size: 1.1rem;
             font-weight: 500;
-            margin: 1rem;
+            margin-bottom: 1rem;
             color: var(--label-hover);
         }
 

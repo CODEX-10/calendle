@@ -1,17 +1,16 @@
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { store } from '../store'
-import { Menu } from '../components'
+import { Auth } from '../components'
 import { useRouter } from 'next/router'
 import GlobalStyle from './_global-styles'
 import Head from 'next/head'
-import dynamic from "next/dynamic"
 import _ from 'lodash'
 
-const Header = dynamic(() => { return import("../components/header") }, { ssr: false })
+import MainContainer from '../container'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { route } = useRouter()
+  const router = useRouter()
 
   return (
     <Provider store={store}>
@@ -28,16 +27,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       </Head>
       <GlobalStyle />
-
-      {_.includes(route, 'auth')
-      ? <Component {...pageProps} />
-      : <div className='main-container'>
-          <Menu />
-          <div className='main-content'>
-            <Header />
-            <Component {...pageProps} />
-          </div>
-        </div>}
+      <Auth />
+      {_.includes(router.route, 'auth')
+        ? <Component {...pageProps} />
+        : <MainContainer>
+          <Component {...pageProps} />
+        </MainContainer>}
     </Provider>
   )
 }
