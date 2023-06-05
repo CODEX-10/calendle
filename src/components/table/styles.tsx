@@ -21,7 +21,7 @@ export const Container: any = styled.div`
         table {
             font-size: 0.9rem;
             border: 0;
-            color: var(--label);
+            color: var(--transparent-6);
             overflow-x: ${(props: any) => (props.notFound ? "auto" : "hidden")};
             width: 100%;
             border-spacing: 0;
@@ -35,7 +35,7 @@ export const Container: any = styled.div`
             }
 
             .table-temp {
-                background: var(--transparent);
+                background: var(--transparent-05);
                 height: 2.5rem;
                 padding: 0.8rem 1.3rem;
                 margin-top: 0.5rem;
@@ -51,7 +51,7 @@ export const Container: any = styled.div`
                     .avatar {
                         width: 1.8rem;
                         height: 1.8rem;
-                        background: var(--transparent);
+                        background: var(--transparent-05);
                         border-radius: 1rem;
                         display: flex;
                         align-items: center;
@@ -233,7 +233,7 @@ export const Container: any = styled.div`
     
     .not-found {
         border-radius: 25px;
-        background: var(--transparent);
+        background: var(--transparent-05);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -243,7 +243,7 @@ export const Container: any = styled.div`
         width: 100%;
 
         p {
-            color: var(--label);
+            color: var(--transparent-6);
             text-align: center;
         }
 

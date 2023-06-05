@@ -10,7 +10,7 @@ export const Container: any = styled.button`
     justify-content: flex-start;
     color: ${(props: any) =>
         props.transparent
-            ? 'var(--label)'
+            ? 'var(--transparent-6)'
             : props.outline
                 ? props.color || 'var(--secondary)'
                 : '#fff'
@@ -43,7 +43,7 @@ export const Container: any = styled.button`
         opacity: .9;
         color: ${(props: any) =>
         props.transparent
-            ? 'var(--label)'
+            ? 'var(--transparent-6)'
             : '#fff'};
         
         &::before {

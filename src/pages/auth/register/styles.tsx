@@ -7,7 +7,7 @@ export const Container = styled.div`
     place-items: center;
 
     .content {
-        border: 1px solid var(--transparent);
+        border: 1px solid var(--transparent-05);
         border-radius: 10px;
         padding: 2rem;
         display: flex;
@@ -22,7 +22,7 @@ export const Container = styled.div`
             font-size: 1.1rem;
             font-weight: 500;
             margin-bottom: 1rem;
-            color: var(--label-hover);
+            color: var(--transparent-8);
         }
     }
 `;

@@ -170,49 +170,4 @@ export default class Refactoring {
             return value.replace(/\D/g, '')
         }
     }
-
-    static template = {
-        name: (data: any) => {
-            if (!data?.length) return
-
-            return `${data[0]?.name}${data?.length > 1 ? ` + ${data?.length - 1}` : ''}`
-        }
-    }
-
-    static theme = {
-        toggle: (theme: string) => {
-            if (!theme) return
-
-            const themeContent = {
-                light: () => {
-                    document.body.style.setProperty("--primary", "#fff")
-                    document.body.style.setProperty("--secondary", "#5869da")
-                    document.body.style.setProperty("--tertiary", "rgb(98, 157, 253, 0.2)")
-                    document.body.style.setProperty("--label", "rgb(0, 0, 0, 0.6)")
-                    document.body.style.setProperty("--label-hover", "rgb(0, 0, 0, 0.8)")
-                    document.body.style.setProperty("--transparent", "rgb(0, 0, 0, 0.05)")
-                    document.body.style.setProperty("--transparent-blur", "rgb(255, 255, 255, 0.4)")
-                    document.body.style.setProperty("--input-border", "rgb(0, 0, 0, 0.2)")
-                    document.body.style.setProperty("--input-background", "#fff")
-                    document.body.style.setProperty("--positive", "#65c965")
-                    document.body.style.setProperty("--negative", "#FF334E")
-                },
-                dark: () => {
-                    document.body.style.setProperty("--primary", "#333")
-                    document.body.style.setProperty("--secondary", "#5869da")
-                    document.body.style.setProperty("--tertiary", "rgb(98, 157, 253, 0.2)")
-                    document.body.style.setProperty("--label", "rgb(255, 255, 255, 0.6)")
-                    document.body.style.setProperty("--label-hover", "rgb(255, 255, 255, 0.8)")
-                    document.body.style.setProperty("--transparent", "rgb(255, 255, 255, 0.05)")
-                    document.body.style.setProperty("--transparent-blur", "rgb(0, 0, 0, 0.2)")
-                    document.body.style.setProperty("--input-border", "rgb(255, 255, 255, 0.2)")
-                    document.body.style.setProperty("--input-background", "transparent")
-                    document.body.style.setProperty("--positive", "#65c965")
-                    document.body.style.setProperty("--negative", "#FF334E")
-                }
-            }
-
-            return themeContent[theme]()
-        }
-    }
 }

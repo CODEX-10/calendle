@@ -50,7 +50,7 @@ export default function Register(props: any) {
     return (
         <Container>
             <div>
-                <Logo color="var(--input-border)" />
+                <Logo color="var(--transparent-2)" />
                 <div className="content">
                     <div className="content-title">Fazer cadastro</div>
                     <Form

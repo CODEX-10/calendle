@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Container } from "./styles"
-import Refactoring from "../../utils"
+import { useTheme } from "../../contexts/theme"
 
 const ROUTE_BLOCK_HEADER = {}
 
 export default function Header(props: any) {
 
-  const [theme, setTheme] = useState("light")
-
-  useEffect(() => {
-    Refactoring.theme.toggle(theme)
-  }, [theme])
+  const { theme, setTheme } = useTheme()
 
   return !ROUTE_BLOCK_HEADER[window.location.pathname] && (
     <Container {...props} theme={theme}>

@@ -10,7 +10,7 @@ export const Container = styled.div`
     width: 3rem;
     height: 1.5rem;
     border-radius: 1rem;
-    border: 2px solid var(--transparent);
+    border: 2px solid var(--transparent-05);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -40,7 +40,7 @@ export const Container = styled.div`
         height: 100%;
         border-radius: 1rem;
         transform: scale(1.8);
-        background: var(--transparent);
+        background: var(--transparent-05);
         top: 0;
         left: 0;
         z-index: 1;
@@ -53,7 +53,7 @@ export const Container = styled.div`
         height: 100%;
         border-radius: 1rem;
         transform: scale(3);
-        background: var(--transparent);
+        background: var(--transparent-05);
         top: 0;
         left: 0;
         z-index: 0;

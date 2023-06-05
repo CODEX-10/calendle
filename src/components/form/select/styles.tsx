@@ -8,7 +8,7 @@ export const Container: any = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid ${(props: any) => props.error ? 'var(--negative)' : 'var(--input-border)'};
+        border: 1px solid ${(props: any) => props.error ? 'var(--negative)' : 'var(--transparent-2)'};
         border-radius: 10px;
         overflow: hidden;
         position: relative;
@@ -22,11 +22,11 @@ export const Container: any = styled.div`
             appearance: none;
             cursor: pointer;
             background-color: var(--input-background);
-            color: var(--label);
+            color: var(--transparent-6);
 
             &:disabled {
-                background-color: var(--input-border);
-                color: var(--label);
+                background-color: var(--transparent-2);
+                color: var(--transparent-6);
                 opacity: .7;
             }
 
@@ -41,7 +41,7 @@ export const Container: any = styled.div`
             right: .8rem;
             transform: translateY(-50%);
             font-size: .8rem;
-            color: var(--label);
+            color: var(--transparent-6);
         }
     }
 

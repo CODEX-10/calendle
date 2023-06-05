@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container: any = styled.div`
     height: 100vh;
     width: 24rem;
-    border-right: 2px solid var(--transparent);
+    border-right: 2px solid var(--transparent-05);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -13,7 +13,7 @@ export const Container: any = styled.div`
         padding: 2rem 2rem 2rem 2.5rem;
         display: flex;
         align-items: center;
-        color: var(--label);
+        color: var(--transparent-6);
 
         .logo {
             font-size: 2.3rem;
@@ -48,7 +48,7 @@ export const Container: any = styled.div`
             .nav-item {
                 margin: .5rem 1.5rem;
                 padding: .3rem .8rem;
-                color: var(--label);
+                color: var(--transparent-6);
                 font-size: .9rem;
                 font-weight: 500;
                 cursor: pointer;
@@ -64,7 +64,7 @@ export const Container: any = styled.div`
                 }
 
                 &:hover {
-                    color: var(--label-hover);
+                    color: var(--transparent-8);
 
                     &.target {
                         border-left: 5px solid var(--secondary);

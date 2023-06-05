@@ -7,7 +7,7 @@ export const Container: any = styled.div`
   font-size: ${(props: any) => props.size || "1.3rem"};
   font-weight: 500;
   font-family: 'Lobster', cursive !important;
-  color: ${(props: any) => props.color || "var(--label)"};
+  color: ${(props: any) => props.color || "var(--transparent-6)"};
 
   i {
     margin-right: .5rem;

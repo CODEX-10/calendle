@@ -14,7 +14,7 @@ export const Container: any = styled.div`
         padding: 0 .6rem;
         border-radius: 1rem;
         transition: ease .3s;
-        color: var(--label);
+        color: var(--transparent-6);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -30,7 +30,7 @@ export const Container: any = styled.div`
         }
 
         &:hover {
-            background: var(--transparent);
+            background: var(--transparent-05);
         }
     }
 `;
