@@ -3,8 +3,8 @@ import { Container } from "./styles"
 
 export function Logo(props: any) {
   return (
-    <Container { ...props }>
-      <i className="fa-regular fa-calendar" />Calendle
+    <Container {...props}>
+      <i className="fa-regular fa-calendar" /><label>Calendle</label>
     </Container>
   )
 }

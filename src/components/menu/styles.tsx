@@ -9,32 +9,23 @@ export const Container: any = styled.div`
     justify-content: space-between;
     white-space: nowrap;
 
+    @media(max-width: 650px) {
+        width: 5rem;
+    }
+
     header {
         padding: 2rem 2rem 2rem 2.5rem;
         display: flex;
         align-items: center;
         color: var(--transparent-6);
 
-        .logo {
-            font-size: 2.3rem;
-            flex: .2;
+        @media(max-width: 650px) {
+            padding: 2rem .5rem 2rem 1.3rem;
         }
 
-        .logo-label {
-            flex: .8;
-
-            p {
-                margin: 0;
-            }
-
-            p:first-child {
-                font-size: .9rem;
-                font-weight: 600;
-            }
-
-            p:last-child {
-                font-size: .8rem;
-                font-weight: 400;
+        label {
+            @media(max-width: 650px) {
+                display: none;
             }
         }
     }
@@ -58,6 +49,10 @@ export const Container: any = styled.div`
                 border-radius: 3px;
                 border-left: 5px solid transparent;
 
+                @media(max-width: 650px) {
+                    margin: .5rem;
+                }
+
                 &.target {
                     color: var(--secondary);
                     border-left: 5px solid var(--secondary);
@@ -78,6 +73,10 @@ export const Container: any = styled.div`
 
                 div:nth-child(2) {
                     flex: .70;
+
+                    @media(max-width: 650px) {
+                        display: none;
+                    }
                 }
 
                 div:nth-child(3) {
@@ -85,6 +84,10 @@ export const Container: any = styled.div`
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
+
+                    @media(max-width: 650px) {
+                        display: none;
+                    }
                 }
             }
         }

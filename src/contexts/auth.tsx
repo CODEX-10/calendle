@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { authenticationSuccess } from '../store/actions/auth'
 
-const AuthContext = createContext({})
+const AuthContext = createContext<any>({})
 
 export const AuthProvider = ({ children }) => {
     const dispatch = useDispatch()

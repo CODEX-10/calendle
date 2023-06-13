@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
-
   body {
     --primary: #fff;
     --secondary: #5869da;
