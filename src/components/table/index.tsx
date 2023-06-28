@@ -76,7 +76,7 @@ export function Table(props: any) {
                                 ? "0 30px 30px 0"
                                 : "0"
                           }
-                          marginTop={key === 0 ? "1.5rem" : ".5rem"}
+                          margin={key === 0 ? "1.5rem 0 0" : ".5rem 0 0"}
                         />
                       </td>
                     ))}

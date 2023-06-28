@@ -15,7 +15,7 @@ export function Button(props: any) {
             {..._.omit(props, ["loading", "timer"])}
         >
             {!!props.loading && !props.timer && <Loading />}
-            <label>{!!props.loading && props.timer ? `${(timer || 0).toFixed(2)}%` : props.label}</label>
+            <label>{props.label}</label>
         </Container>
     )
 }

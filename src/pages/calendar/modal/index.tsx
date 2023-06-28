@@ -5,26 +5,22 @@ import { useDispatch, useSelector } from "react-redux"
 import Refactoring from "../../../utils"
 import * as Yup from "yup"
 
-import { saveCustomerRequest } from "../../../store/actions/customer"
+import { saveCalendarRequest } from "../../../store/actions/calendar"
 
-export default function ModalCustomer(props: any) {
+export default function ModalCalendar(props: any) {
     const dispatch = useDispatch()
     const formRef: any = useRef({})
 
-    const { loadingSaveCustomer: loading } = useSelector((state: any) => state.customer)
-
-    const phone = (value: string) => Refactoring.mask.phone(value)
-    const removePhone = (value: string) => Refactoring.removeMask.phone(value)
-    const docNumber = (value: string) => Refactoring.mask.docNumber(value)
-    const removeDocNumber = (value: string) => Refactoring.removeMask.docNumber(value)
+    const { loadingSaveCalendar: loading } = useSelector((state: any) => state.calendar)
 
     useEffect(() => {
         if (!props.content.value.uuid) return
 
         formRef.current.setData({
-            name: props.content.value.name,
-            phone: phone(props.content.value.phone),
-            email: props.content.value.email || '',
+            title: props.content.value.title,
+            description: props.content.value.description,
+            dt_start: props.content.value.dt_start || '',
+            dt_end: props.content.value.dt_end || '',
         })
     }, [props.content.value])
 
@@ -38,9 +34,10 @@ export default function ModalCustomer(props: any) {
     async function _onSubmit(data: any) {
         try {
             const schema = Yup.object().shape({
-                name: Yup.string().required('Campo obrigatório!'),
-                phone: Yup.string().required('Campo obrigatório!'),
-                cpf: Yup.string().required('Campo obrigatório!'),
+                title: Yup.string().required('Campo obrigatório!'),
+                description: Yup.string().required('Campo obrigatório!'),
+                dt_start: Yup.string().required('Campo obrigatório!'),
+                dt_end: Yup.string().required('Campo obrigatório!'),
             })
 
             await schema.validate(data, { abortEarly: false })
@@ -49,13 +46,13 @@ export default function ModalCustomer(props: any) {
 
             const body: any = {
                 uuid: props.content.value.uuid,
-                name: data.name,
-                phone: removePhone(data.phone),
-                cpf: removeDocNumber(data.cpf),
-                email: data.email || null,
+                title: data.title,
+                description: data.description,
+                dt_start: data.dt_start,
+                dt_end: data.dt_end,
             }
 
-            dispatch(saveCustomerRequest({
+            dispatch(saveCalendarRequest({
                 ...body, clear: () => {
                     onClose()
                     props.page.set(0)
@@ -76,12 +73,11 @@ export default function ModalCustomer(props: any) {
 
     return (
         <Modal
-            center
             toggle={props.toggle.value}
             onClose={onClose}
             buttons={[
                 {
-                    label: 'salvar',
+                    label: 'agendar',
                     onClick: () => formRef.current.submitForm(),
                     loading
                 },
@@ -103,25 +99,32 @@ export default function ModalCustomer(props: any) {
                         onSubmit={_onSubmit}
                         inputs={[
                             {
-                                name: "name",
-                                label: "Nome",
-                                disabled: loading
-                            },
-                            {
-                                name: "phone",
-                                label: "Telefone",
-                                mask: phone,
-                                disabled: loading
-                            },
-                            {
                                 name: "cpf",
-                                label: "CPF",
-                                mask: docNumber,
+                                label: "CPF do cliente",
+                                mask: Refactoring.mask.docNumber,
                                 disabled: loading
                             },
                             {
-                                name: "email",
-                                label: "E-mail",
+                                name: "title",
+                                label: "Título",
+                                disabled: loading
+                            },
+                            {
+                                type: "textarea",
+                                name: "description",
+                                label: "Descrição",
+                                disabled: loading
+                            },
+                            {
+                                type: "datetime",
+                                name: "dt_start",
+                                label: "Data início",
+                                disabled: loading
+                            },
+                            {
+                                type: "datetime",
+                                name: "dt_end",
+                                label: "Data final",
                                 disabled: loading
                             },
                         ]}

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
+import _ from 'lodash'
 
 import { authenticationSuccess } from '../store/actions/auth'
 
@@ -22,7 +23,7 @@ export const AuthProvider = ({ children }) => {
 
         if (!token) dispatch(authenticationSuccess(tokenStorage))
 
-        router.push("/home")
+        if (_.includes(router.route, "auth")) router.push("/focus")
     }, [token])
 
     const logout = () => {

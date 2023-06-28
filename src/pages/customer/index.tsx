@@ -20,10 +20,7 @@ export default function Customers() {
   const phone = (value: string) => Refactoring.mask.phone(value)
 
   const getCustomers = useCallback(() => {
-    dispatch(customersRequest({
-      offset: page,
-      order: { name: 'ASC' }
-    }))
+    dispatch(customersRequest({ offset: page }))
   }, [dispatch, page])
 
   useEffect(() => {
@@ -48,7 +45,7 @@ export default function Customers() {
       <div className='customer-title'>Meus clientes</div>
       <Table
         loading={loadingCustomers}
-        content={customers.content}
+        content={customers}
         paginate={{
           total: customers.totalPage,
           page: {
@@ -74,8 +71,8 @@ export default function Customers() {
           },
           { column: 'Nome', row: { name: 'name', style: { fontWeight: 600 } } },
           { column: 'Telefone', row: { name: 'phone', mask: phone } },
+          { column: 'CPF', row: 'cpf' },
           { column: 'E-mail', row: 'email' },
-          { column: 'Grupo', row: 'group' },
           {
             column: { action: { icon: 'fa-solid fa-plus', function: customer } },
             row: { actions: [{ icon: 'fa-solid fa-pen-to-square', function: (data: any) => customer(data) }] }

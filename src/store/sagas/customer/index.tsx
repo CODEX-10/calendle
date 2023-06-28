@@ -13,9 +13,9 @@ export function* customers({ payload: credentials }: any) {
   try {
     yield put(setLoadingCustomers(true))
 
-    // const { data } = yield call(api.get, 'customer', { params: credentials })
+    const { data } = yield call(api.get, 'customer', { params: credentials })
 
-    // yield put(customersSuccess(data))
+    yield put(customersSuccess(data))
 
     yield put(setLoadingCustomers(false))
   } catch (e) {
@@ -27,9 +27,11 @@ export function* saveCustomer({ payload: body }: any) {
   try {
     yield put(setLoadingSaveCustomer(true))
 
-    const body_customer = { ...body }
-
-    // yield call(api.post, 'customer', _.omit(body_customer, ['uuid', 'clear']), { params: { uuid: body.uuid } })
+    yield call(
+      api[body.uuid ? "put" : "post"],
+      body.uuid ? `customer/${body.uuid}` : "customer",
+      _.omit(body, ['uuid', 'clear'])
+    )
 
     yield put(setLoadingSaveCustomer(false))
 

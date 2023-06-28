@@ -10,7 +10,7 @@ export function Menu(props: any) {
     const { route } = useRouter()
 
     const navigation = [
-        { icon: 'fa-solid fa-house', label: 'Página inicial', route: '/home' },
+        { icon: 'fa-solid fa-bullseye', label: 'Foco', route: '/focus' },
         { icon: 'fa-solid fa-calendar-week', label: 'Agendamentos', route: '/calendar' },
         { icon: 'fa-solid fa-users', label: 'Meus clientes', route: '/customer' },
     ]
@@ -45,6 +45,12 @@ export function Menu(props: any) {
                 </nav>
             </div>
             <footer>
+                <div className='profile'>
+                    <i className='fa-solid fa-circle-user' />
+                    <div>
+
+                    </div>
+                </div>
             </footer>
         </Container>
     )

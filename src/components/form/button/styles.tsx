@@ -7,25 +7,23 @@ export const Container: any = styled.button`
     transition: ease .3s;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     color: ${(props: any) =>
         props.transparent
             ? 'var(--transparent-6)'
             : props.outline
                 ? props.color || 'var(--secondary)'
-                : '#fff'
+                : '#fff !important'
     };
     background: transparent;
     border: 1px solid transparent;
     pointer-events: ${(props: any) => props.loading === "true" ? "none" : "auto"};
     cursor: ${(props: any) => props.loading === "true" ? "default" : "pointer"};
+    padding: .4rem 2.5rem;
     position: relative;
-    padding: 0;
 
     label {
-        width: 100%;
         text-align: center;
-        padding: .4rem 2.5rem;
         cursor: ${(props: any) => props.loading === "true" ? "default" : "pointer"};
         position: relative;
         z-index: 1;

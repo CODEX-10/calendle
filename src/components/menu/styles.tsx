@@ -69,6 +69,14 @@ export const Container: any = styled.div`
 
                 div:first-child {
                     flex: .15;
+
+                    @media(max-width: 650px) {
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-right: 5px;
+                    }
                 }
 
                 div:nth-child(2) {

@@ -5,7 +5,7 @@ export const Container = styled.div`
   height: ${(props: any) => props.height || "100%"};
   width: ${(props: any) => props.width || "100%"};
   animation: loading infinite 2s;
-  margin-top: ${(props: any) => props.marginTop || "0px"};
+  margin: ${(props: any) => props.margin || "0px"};
 
   @keyframes loading {
     0% {

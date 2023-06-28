@@ -4,7 +4,7 @@ const ThemeContext = createContext<any>({})
 
 const ThemeProvider = ({ children }) => {
 
-    const [theme, setTheme] = useState("light")
+    const [theme, setTheme] = useState("")
 
     const toggle = (theme: string) => {
         if (!theme) return
@@ -42,7 +42,10 @@ const ThemeProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        if (!theme) return setTheme(localStorage.getItem("@Calendle:theme"))
+
         toggle(theme)
+        localStorage.setItem("@Calendle:theme", theme)
     }, [theme])
 
     return (

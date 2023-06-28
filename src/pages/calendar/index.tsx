@@ -1,11 +1,19 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container } from './styles'
 import { Calendar, Event, momentLocalizer } from 'react-big-calendar'
+import { Button } from '../../components'
+import { useDispatch, useSelector } from 'react-redux'
 import withDragAndDrop, { withDragAndDropProps } from 'react-big-calendar/lib/addons/dragAndDrop'
 import moment from 'moment'
+import _ from 'lodash'
+
 import 'moment/locale/pt-br'
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+
+import { calendarRequest } from '../../store/actions/calendar'
+
+import ModalCalendar from './modal'
 
 moment.locale("pt-br")
 
@@ -13,36 +21,78 @@ const localizer = momentLocalizer(moment)
 const DnDCalendar = withDragAndDrop(Calendar)
 
 export default function Calendars() {
-    const [events, setEvents] = useState<Event[]>([{
-        title: 'Learn cool stuff',
-        start: moment().toDate(),
-        end: moment().add(2, 'hour').toDate()
-    }])
+    const dispatch = useDispatch()
 
-    const onEventResize: withDragAndDropProps['onEventResize'] = (data) => {
-        const { start, end } = data
+    const { calendar } = useSelector((state: any) => state.calendar)
 
-        setEvents(currentEvents => {
-            const firstEvent = {
-                start: new Date(start),
-                end: new Date(end),
-            }
-            return [...currentEvents, firstEvent]
+    const [content, setContent] = useState({})
+    const [modal, setModal] = useState(false)
+    const [events, setEvents] = useState<Event[]>([])
+
+    useEffect(() => {
+        dispatch(calendarRequest({}))
+    }, [dispatch])
+
+    useEffect(() => {
+        if (!calendar.length) return
+
+        setEvents(_.map(calendar, (data) => ({
+            title: data.title,
+            resource: data,
+            start: new Date(data.dt_start),
+            end: new Date(data.dt_end)
+        })))
+    }, [calendar])
+
+    const open = (data: any) => {
+        setModal(true)
+
+        if (!data) return
+
+        setContent({
+            ...data.resource,
+            dt_start: moment(data.dt_start).format('YYYY-MM-DDTHH:mm'),
+            dt_end: moment(data.dt_end).format('YYYY-MM-DDTHH:mm')
         })
     }
 
-    const onEventDrop: withDragAndDropProps['onEventDrop'] = (data) => console.log(data)
+    const update = (data: any) => {
+        const { start, end } = data
+
+        const content = [...events]
+
+        content.splice(_.findIndex(content, ({ resource }) => resource.uuid === data.event.resource.uuid), 1, {
+            ...data.event,
+            start: new Date(start),
+            end: new Date(end),
+        })
+
+        setEvents(content)
+    }
+
+    const onEventResize: withDragAndDropProps['onEventResize'] = update
+
+    const onEventDrop: withDragAndDropProps['onEventDrop'] = update
 
     return (
         <Container>
+            <ModalCalendar
+                toggle={{ value: modal, set: setModal }}
+                content={{ value: content, set: setContent }}
+            />
+            <div className='calendar-header'>
+                <span className='title'>Agendamentos</span>
+                <Button label="agendar" onClick={open} />
+            </div>
             <DnDCalendar
                 defaultView='week'
                 events={events}
                 localizer={localizer}
+                onSelectEvent={open}
                 onEventDrop={onEventDrop}
                 onEventResize={onEventResize}
                 resizable
-                style={{ height: 'calc(100vh - 5rem)', color: 'var(--transparent-6)' }}
+                style={{ height: 'calc(100vh - 8.5rem)', color: 'var(--transparent-6)' }}
                 messages={{
                     date: "data",
                     time: "horário",
