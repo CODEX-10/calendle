@@ -100,4 +100,63 @@ export const Container: any = styled.div`
             }
         }
     }
+
+    footer {
+        padding: 1rem;
+
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-radius: 10px;
+            background: var(--transparent-05);
+            color: var(--transparent-6);
+
+            @media(max-width: 650px) {
+                padding: .5rem;
+                justify-content: center;
+            }
+
+            .profile-content {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                @media(max-width: 650px) {
+                    display: none;
+                }
+
+                i {
+                    font-size: 2rem;
+                }
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    label {
+                        width: 9rem;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+
+                        &:first-child {
+                            font-size: .8rem;
+                            font-weight: 600;
+                        }
+
+                        &:last-child {
+                            font-size: .6rem;
+                        }
+                    }
+                }
+            }
+
+            i:last-child {
+                cursor: pointer;
+            }
+        }
+    }
 `;

@@ -4,7 +4,7 @@ export const calendar = createSlice({
   name: "calendar",
 
   initialState: {
-    calendar: { content: [] },
+    calendar: [],
     loadingCalendar: true,
 
     loadingSaveCalendar: false,

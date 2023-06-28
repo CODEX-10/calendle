@@ -17,17 +17,16 @@ export default function Focus(props: any) {
     }, [dispatch])
 
     return (
-        <Container loading={loadingCalendar}>
+        <Container>
             <div className='focus-title'>Agendamentos de hoje</div>
-            {!!loadingCalendar &&
-                <>
+            {!!loadingCalendar
+                ? <>
                     <Loading height="10rem" margin="0 0 .5rem" />
                     {_.map([1, 2, 3, 4, 5], (data, index) =>
                         <Loading key={index} height="4rem" margin="0 0 .5rem" />
                     )}
-                </>}
-            <div className="focus-content">
-                {calendar.length
+                </>
+                : calendar.length
                     ? _.map(calendar, (data, index) =>
                         <Content key={index} index={index} {...data} />
                     )
@@ -35,7 +34,6 @@ export default function Focus(props: any) {
                         <i className="fa-regular fa-calendar" />
                         <label>Nenhum agendamento encontrado</label>
                     </div>}
-            </div>
         </Container>
     )
 }

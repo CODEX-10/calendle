@@ -18,6 +18,7 @@ export default function Customers() {
   const [content, setContent] = useState({})
 
   const phone = (value: string) => Refactoring.mask.phone(value)
+  const docNumber = (value: string) => Refactoring.mask.docNumber(value)
 
   const getCustomers = useCallback(() => {
     dispatch(customersRequest({ offset: page }))
@@ -71,7 +72,7 @@ export default function Customers() {
           },
           { column: 'Nome', row: { name: 'name', style: { fontWeight: 600 } } },
           { column: 'Telefone', row: { name: 'phone', mask: phone } },
-          { column: 'CPF', row: 'cpf' },
+          { column: 'CPF', row: { name: 'cpf', mask: docNumber } },
           { column: 'E-mail', row: 'email' },
           {
             column: { action: { icon: 'fa-solid fa-plus', function: customer } },

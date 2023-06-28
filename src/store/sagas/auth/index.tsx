@@ -1,8 +1,5 @@
-import {
-  // call, 
-  put
-} from 'redux-saga/effects'
-// import { api } from '../../../services'
+import { call, put } from 'redux-saga/effects'
+import { api } from '../../../services'
 import _ from 'lodash'
 
 import {
@@ -16,7 +13,7 @@ export function* authentication({ payload: credentials }: any) {
 
     const token = Buffer.from(JSON.stringify(credentials)).toString('base64')
 
-    // const { data } = yield call(api.get, 'campain', { params: credentials })
+    const { data } = yield call(api.get, '/login', { params: credentials })
 
     yield put(authenticationSuccess(token))
 

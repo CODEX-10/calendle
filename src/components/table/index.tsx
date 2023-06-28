@@ -119,7 +119,7 @@ export function Table(props: any) {
                               </div>
                               : <div className="row-content">
                                 {option.row?.mask
-                                  ? option.row?.mask(data[option.row?.name] || data)
+                                  ? option.row?.mask(data[option.row?.name]) || "---"
                                   : option.row?.custom
                                     ? option.row?.custom(data[option.row?.name] || data)
                                     : data[option.row?.name || option.row]

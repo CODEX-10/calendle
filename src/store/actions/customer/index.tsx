@@ -4,7 +4,7 @@ export const customer = createSlice({
   name: "customer",
 
   initialState: {
-    customers: { content: [] },
+    customers: [],
     loadingCustomers: true,
 
     loadingSaveCustomer: false,
