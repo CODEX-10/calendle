@@ -24,6 +24,7 @@ export function* authentication({ payload: credentials }: any) {
     yield put(setUser(user))
     yield put(authenticationSuccess(token))
 
+    localStorage.setItem("@Calendle:user", JSON.stringify(user))
     localStorage.setItem("@Calendle:token", token)
   } catch (e) {
     yield put(setLoadingAuthentication(false))
