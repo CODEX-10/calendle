@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         localStorage.removeItem("@Calendle:token")
+        localStorage.removeItem("@Calendle:user")
         dispatch(authenticationSuccess(""))
         router.push("/auth/login")
     }
