@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     const dispatch = useDispatch()
     const router = useRouter()
 
-    const { token } = useSelector((state: any) => state.auth)
+    const { token, user } = useSelector((state: any) => state.auth)
 
     useEffect(() => {
         const tokenStorage = localStorage.getItem("@Calendle:token")
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated: !!token, token, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated: !!token, token, logout, user }}>
             {children}
         </AuthContext.Provider>
     )

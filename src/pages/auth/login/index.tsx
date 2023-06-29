@@ -26,7 +26,7 @@ export default function Login(props: any) {
             formRef.current.setErrors({})
 
             const body: any = {
-                user: data.user,
+                emailPhone: data.user,
                 password: data.password,
             }
 
@@ -54,7 +54,7 @@ export default function Login(props: any) {
                         formRef={formRef}
                         onSubmit={onSubmit}
                         inputs={[
-                            { label: "E-mail ou telefone", name: "user" },
+                            { label: "E-mail", name: "user" },
                             { label: "Senha", name: "password", type: "password" },
                         ]}
                         buttons={[{

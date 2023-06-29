@@ -3,8 +3,10 @@ import { api } from '../../../services'
 import _ from 'lodash'
 
 import {
+  customerSuccess,
   customersRequest,
   customersSuccess,
+  setLoadingCustomer,
   setLoadingCustomers,
   setLoadingSaveCustomer,
 } from '../../actions/customer'
@@ -15,11 +17,25 @@ export function* customers({ payload: credentials }: any) {
 
     const { data } = yield call(api.get, 'customer', { params: credentials })
 
-    yield put(customersSuccess(data))
+    yield put(customersSuccess(_.filter(data, (item) => !!item.cpf)))
 
     yield put(setLoadingCustomers(false))
   } catch (e) {
     yield put(setLoadingCustomers(false))
+  }
+}
+
+export function* customer({ payload: credentials }: any) {
+  try {
+    yield put(setLoadingCustomer(true))
+
+    const { data: { customer } } = yield call(api.get, `customer/${credentials.uuid}`, { params: credentials })
+
+    yield put(customerSuccess(customer || {}))
+
+    yield put(setLoadingCustomer(false))
+  } catch (e) {
+    yield put(setLoadingCustomer(false))
   }
 }
 

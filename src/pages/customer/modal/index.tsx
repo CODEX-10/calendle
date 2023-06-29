@@ -23,6 +23,7 @@ export default function ModalCustomer(props: any) {
 
         formRef.current.setData({
             name: props.content.value.name,
+            cpf: docNumber(props.content.value.cpf),
             phone: phone(props.content.value.phone),
             email: props.content.value.email || '',
         })

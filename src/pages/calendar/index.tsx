@@ -37,7 +37,7 @@ export default function Calendars() {
         if (!calendar.length) return
 
         setEvents(_.map(calendar, (data) => ({
-            title: data.title,
+            title: data.customer?.name,
             resource: data,
             start: new Date(data.dt_start),
             end: new Date(data.dt_end)

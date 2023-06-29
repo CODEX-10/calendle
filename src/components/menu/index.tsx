@@ -9,7 +9,7 @@ import _ from 'lodash'
 export function Menu(props: any) {
 
     const { route } = useRouter()
-    const { logout } = useAuth()
+    const { logout, user } = useAuth()
 
     const navigation = [
         { icon: 'fa-solid fa-bullseye', label: 'Foco', route: '/focus' },
@@ -51,8 +51,8 @@ export function Menu(props: any) {
                     <div className='profile-content'>
                         <i className='fa-solid fa-circle-user' />
                         <div>
-                            <label>Gustavo Valsechi</label>
-                            <label>gustavo@nummus.com.br</label>
+                            <label>{user.name}</label>
+                            <label>{user.emailPhone}</label>
                         </div>
                     </div>
                     <i className='fa-solid fa-right-from-bracket' onClick={logout} />

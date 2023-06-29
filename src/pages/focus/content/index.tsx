@@ -31,9 +31,9 @@ export default function FocusContent(props: any) {
             <div ref={headerRef} className="scheduling-header">
                 <div>
                     <i className="fa-solid fa-circle-user" />
-                    <label>Gustavo Valsechi de Freitas</label>
+                    <label>{props.customer?.name}</label>
                 </div>
-                <span>{moment(props.dh_start).format("DD/MM/YYYY HH:mm")} - {moment(props.dh_end).format("DD/MM/YYYY HH:mm")}</span>
+                <span>{moment(props.dt_start).format("DD/MM/YYYY HH:mm")} - {moment(props.dt_end).format("DD/MM/YYYY HH:mm")}</span>
             </div>
             <div ref={contentRef} className="scheduling-content">
                 <span>{props.title}</span>

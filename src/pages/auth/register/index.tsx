@@ -2,10 +2,14 @@ import React, { useRef } from "react"
 import { Container } from "./styles"
 import { Form, Logo } from "../../../components"
 import { useRouter } from "next/router"
-// import Refactoring from "../../../utils"
+import { useDispatch } from "react-redux"
 import * as Yup from "yup"
 
+import { registerRequest } from "../../../store/actions/auth"
+
 export default function Register(props: any) {
+    const dispatch = useDispatch()
+
     const router = useRouter()
     const formRef: any = useRef({})
 
@@ -17,7 +21,6 @@ export default function Register(props: any) {
             const schema = Yup.object().shape({
                 name: Yup.string().required('Campo obrigatório!'),
                 email: Yup.string().email("E-mail inválido!").required('Campo obrigatório!'),
-                phone: Yup.string().min(14, "Mínimo 10 dígitos").max(15, "Máximo 11 dígitos").required('Campo obrigatório!'),
                 password: Yup.string().min(6, "Mínimo 6 caracteres").required('Campo obrigatório!'),
                 password_confirm: Yup.string().oneOf([Yup.ref('password'), null], 'Confirmação inválida!').required('Campo obrigatório!'),
             })
@@ -26,14 +29,14 @@ export default function Register(props: any) {
 
             formRef.current.setErrors({})
 
-            // const body: any = {
-            //     name: data.name,
-            //     email: data.email,
-            //     phone: removePhone(data.phone),
-            //     password: data.password,
-            // }
+            const body: any = {
+                name: data.name,
+                emailPhone: data.email,
+                password: data.password,
+                redirect: () => router.push("/auth/login")
+            }
 
-            router.push("/auth/login")
+            dispatch(registerRequest(body))
         } catch (err) {
             if (err instanceof Yup.ValidationError) {
                 const errorMessages = {}
@@ -59,7 +62,6 @@ export default function Register(props: any) {
                         inputs={[
                             { label: "Nome completo", name: "name" },
                             { label: "E-mail", name: "email" },
-                            { label: "Telefone", name: "phone" },
                             { label: "Senha", name: "password" },
                             { label: "Confirmar senha", name: "password_confirm" },
                         ]}

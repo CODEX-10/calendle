@@ -3,20 +3,24 @@ import { Container } from "./styles"
 import { Form, Modal } from "../../../components"
 import { useDispatch, useSelector } from "react-redux"
 import Refactoring from "../../../utils"
+import moment from "moment"
 import * as Yup from "yup"
 
 import { saveCalendarRequest } from "../../../store/actions/calendar"
+import { customerRequest, customerSuccess } from "../../../store/actions/customer"
 
 export default function ModalCalendar(props: any) {
     const dispatch = useDispatch()
     const formRef: any = useRef({})
 
     const { loadingSaveCalendar: loading } = useSelector((state: any) => state.calendar)
+    const { customer } = useSelector((state: any) => state.customer)
 
     useEffect(() => {
         if (!props.content.value.uuid) return
 
         formRef.current.setData({
+            cpf: Refactoring.mask.docNumber(props.content.value.customer?.cpf),
             title: props.content.value.title,
             description: props.content.value.description,
             dt_start: props.content.value.dt_start || '',
@@ -42,10 +46,17 @@ export default function ModalCalendar(props: any) {
 
             await schema.validate(data, { abortEarly: false })
 
+            const dtStart = moment(data.dt_start)
+            const dtEnd = moment(data.dt_end)
+
+            if (dtStart.diff(moment(), "minute") < 0) return formRef.current.setErrors({ dt_start: "Data menor que atual!" })
+            if (dtEnd.diff(dtStart, "minute") <= 0) return formRef.current.setErrors({ dt_end: "Data final menor ou igual que a final!" })
+
             formRef.current.setErrors({})
 
             const body: any = {
-                uuid: props.content.value.uuid,
+                uuid: props.content.value?.uuid,
+                uuid_customer: customer.uuid,
                 title: data.title,
                 description: data.description,
                 dt_start: data.dt_start,
@@ -66,6 +77,12 @@ export default function ModalCalendar(props: any) {
                     errorMessages[error.path] = error.message
                 })
 
+                const dtStart = moment(data.dt_start)
+                const dtEnd = moment(data.dt_end)
+
+                if (dtStart.diff(moment(), "minute") < 0) return formRef.current.setErrors({ ...errorMessages, dt_start: "Data menor que atual!" })
+                if (dtEnd.diff(dtStart, "minute") <= 0) return formRef.current.setErrors({ ...errorMessages, dt_end: "Data final menor ou igual que a final!" })
+
                 formRef.current.setErrors(errorMessages)
             }
         }
@@ -79,6 +96,7 @@ export default function ModalCalendar(props: any) {
                 {
                     label: 'agendar',
                     onClick: () => formRef.current.submitForm(),
+                    disabled: !customer.uuid || loading,
                     loading
                 },
                 {
@@ -102,6 +120,14 @@ export default function ModalCalendar(props: any) {
                                 name: "cpf",
                                 label: "CPF do cliente",
                                 mask: Refactoring.mask.docNumber,
+                                maxLength: 14,
+                                onChange: (value: string) => {
+                                    const cpf = Refactoring.removeMask.docNumber(value)
+
+                                    if (cpf.length < 11) return dispatch(customerSuccess({}))
+
+                                    dispatch(customerRequest({ cpf }))
+                                },
                                 disabled: loading
                             },
                             {
